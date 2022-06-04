@@ -3,10 +3,11 @@ import mongoose from "mongoose";
 import Users from "../models/Users";
 
 const createUser = (req: Request, res: Response, next: NextFunction) => {
-  const { name } = req.body;
+  const {name} = req.body;
 
   const user = new Users({
     _id: new mongoose.Types.ObjectId(),
+    name,
   });
   return user
     .save()
@@ -25,11 +26,13 @@ const getUser = (req: Request, res: Response, next: NextFunction) => {
     )
     .catch((error) => res.status(500).json({ error }));
 };
+
 const getAllUser = (req: Request, res: Response, next: NextFunction) => {
   return Users.find()
     .then((users) => res.status(200).json({ users }))
     .catch((error) => res.status(500).json({ error }));
 };
+
 const updateUser = (req: Request, res: Response, next: NextFunction) => {
   const { userId } = req.params;
 

@@ -4,6 +4,7 @@ import http from "http";
 import mongoose from "mongoose";
 import Logging from "./library/Logging";
 import userRoutes from './routes/User'
+import docRoutes from './routes/Document'
 
 const router = express();
 
@@ -65,6 +66,7 @@ const startServer = () => {
 
   //Routes
   router.use('/users', userRoutes)
+  router.use('/doc',docRoutes )
 
   //Error handling
   router.use((req, res, next) => {

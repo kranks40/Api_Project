@@ -1,18 +1,20 @@
+import { Document } from 'mongoose';
+
 import express from "express";
-import controller from "../controllers/User";
-import { Schema, ValidateJoi } from "../middleware/Joi";
+import controller from "../controllers/doc";
+import { Schemas, ValidateJoi } from "../middleware/ValidateSchema";
 
 const router = express.Router();
 
-router.post("/create", ValidateJoi(Schema.user.create), controller.createUser);
+router.post('/create', ValidateJoi(Schemas.users.create), controller.createDocument);
 
-router.get('/get/:userId', controller.getUser)
+router.get('/get/:userId', controller.getDocument)
 
-router.get('/get', controller.getAllUser)
+router.get('/get', controller.getAllDocument)
 
-router.patch('/update/:userId', ValidateJoi(Schema.user.update), controller.updateUser)
+router.patch('/update/:userId', controller.updateDocument)
 
-router.delete('/delete/:userId', controller.deleteUser)
+router.delete('/delete/:userId', controller.deleteDocument)
 
 
 export = router
